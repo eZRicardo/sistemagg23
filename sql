@@ -1,1 +1,0 @@
-CREATE TABLE info (id INT PRIMARY KEY auto_increment, login varchar(30) NOT NULL unique, senha VARCHAR(20) NOT NULL UNIQUE, nome VARCHAR(200) NOT NULL UNIQUE, cpf CHAR(11) NOT NULL UNIQUE, rg CHAR(8) NOT NULL UNIQUE, aniversario VARCHAR(10), idade INT(3));
