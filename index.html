@@ -2,26 +2,28 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="login.css">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/index.js"></script>
 	<title>Login</title>
+	<meta charset="utf-8">
 </head>
 <body class="bod">
 	<div class="dados">
 		<br>
 		<br>
 		<center><h2 style=" color:blackS;">Login:</h2></center>
-		<form method="post" action="loginaction.php">
 			<div class="dados-forma">
 				<label>Login:</label>
-				<input placeholder="Digite o seu login" name="login" type="text" required>
+				<input placeholder="Digite o seu login" id="login" name="login" type="text">
 			</div>
 			<div class="dados-forma2">
 				<br>
 				<label>Senha:</label>
-				<input placeholder="Digite a sua senha" name="password" type="password" required>
+				<input placeholder="Digite a sua senha" id="password" name="password" type="password">
 			</div>
-			<button class="btton" type="submit">login</button>
-			<br>		
-		</form>
+			<button class="btton" onclick="loginaction();">login</button>
+			<font color="red" id="response"></font>
+			<br>
 	</div>
 </body>
 </html>

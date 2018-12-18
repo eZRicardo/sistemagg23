@@ -14,7 +14,7 @@ $row = $result->fetch_assoc();
 if($row){
     $_SESSION['id'] = $row['id'];
 	$_SESSION['nome'] = $row['nome'];
-    header("location: google.com");
+    echo "SUCCESS";
 }else{
 	echo "<script> alert('Senha ou Login incorreto');</script>";
 }

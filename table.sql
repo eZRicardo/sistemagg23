@@ -4,7 +4,7 @@ USE sistema_pj;
 
 CREATE TABLE setor(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(30) NOT NULL,
+	nome VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE engenharia(
