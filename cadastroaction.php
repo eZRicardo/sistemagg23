@@ -14,18 +14,26 @@ $nome = $_POST['nome'];
 $login = $_POST['login'];
 $senha = $_POST['senha'];
 
-$sql_1 = "INSERT INTO setor(nome) VALUES('$setor')";
-$sql_2 = "INSERT INTO engenharia(nome) VALUES('$engenharia')";
-$sql_3 = "INSERT INTO associado(nome,login,senha) VALUES('$nome','$login','$senha')";
 
-if($setor == " " || $engenharia == " " || $login == " " || $senha == " " || $nome == " "){
+$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','$senha',
+	   '$engenharia','$setor')";
 
-    echo "Dados insuficientes para o cadastro";
+$result = $connexão->query($sql);
+
+if($result){
+
+	echo "SUCCESS";
+
+	echo "<script>window.location = 'index.php'; </script>";
 
 }else{
 
-$inserir = mysql_query($sql_1,sql_2,sql_3);
-
+	echo "Falha ao inserir os dados do cadastro";
 }
+
+if($setor == " " || $engenharia == " " || $login == " " || $senha == " " || $nome == " ")
+
+    echo "Dados insuficientes para o cadastro";
+
 ?>
 
