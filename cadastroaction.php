@@ -24,8 +24,6 @@ if($result){
 
 	echo "SUCCESS";
 
-	echo "<script>window.location = 'index.php'; </script>";
-
 }else{
 
 	echo "Falha ao inserir os dados do cadastro";

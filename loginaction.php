@@ -12,9 +12,10 @@ $sql = "SELECT id, nome FROM associado WHERE login = '$login' AND senha = '$pass
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 if($row){
-    $_SESSION['id'] = $row['id'];
+  echo "SUCCESS";
+	$_SESSION['id'] = $row['id'];
 	$_SESSION['nome'] = $row['nome'];
-    echo "SUCCESS";
+	// $_SESSION['permissoes'] = null;
 }else{
 	echo "<script> alert('Senha ou Login incorreto');</script>";
 }

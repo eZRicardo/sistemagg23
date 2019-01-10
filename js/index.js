@@ -7,7 +7,7 @@ function loginaction(){
 		data:{ 'login': login, 'password':password },
 		success: function(response){
 			if(response == "SUCCESS"){
-				window.location.href = "google.com";
+				window.location.href = "menu.php";
 			} else {
 				var label = document.getElementById("response");
 				label.innerHTML = "Usuário ou Senha Inválidos";
