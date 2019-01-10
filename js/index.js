@@ -6,6 +6,7 @@ function loginaction(){
 		url:'loginaction.php',
 		data:{ 'login': login, 'password':password },
 		success: function(response){
+			console.log(response);
 			if(response == "SUCCESS"){
 				window.location.href = "menu.php";
 			} else {
