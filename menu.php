@@ -1,8 +1,7 @@
 <?php
-	// if(!$_SESSION['id']){
-	// 	session_destroy();
-	// 	header("Location: index.html");
-	// }
+	if(!$_SESSION['id']){
+		header("Location: logout.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>
