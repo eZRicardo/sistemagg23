@@ -29,16 +29,19 @@ if(isset($_GET['engenharia'])){
 	<title>Associados</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/menu.css">
+	<link rel="stylesheet" type="text/css" href="css/associado.css">
 	<script src="js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <?php include 'navbar.html'; ?>
-<table class="table table striped">
+<center>
+<h1>Associados</h1>
+<table id="tabelaassociados" class="table table-striped">
 <thead>
 	<th>Nome</th>
 	<th>Setor</th>
 	<th>Engenharia</th>
+	<th></th>
 </thead>
 <?php
 
@@ -49,7 +52,7 @@ if(isset($_GET['engenharia'])){
 	$result = $conn->query($sql);
 
 	if(!$result){
-		echo "ERRO NA EXECUÇÃO DA QUERY \n";
+		echo "ERRO NA EXECUÇÃO DA QUERY: <br>";
 		echo $sql;
 
 		die;
@@ -65,11 +68,7 @@ if(isset($_GET['engenharia'])){
 	}
 
 ?>
-	
 </table>
-
-<center>
-	
 </center>
 
 </body>
