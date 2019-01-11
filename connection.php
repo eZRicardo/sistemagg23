@@ -1,8 +1,7 @@
 <?php 
-$servername = 'localhost';
-$username = 'root';
-$password = "123456";
-$dbname = "sistema_pj";
-$conn = new mysqli($servername,$username,$password,$dbname); 
 
-?>
+$servername = 'sql176.main-hosting.eu.';
+$username = 'u959253842_pj';
+$password = "XHujKWxFcT8Q";
+$dbname = "u959253842_erp";
+$conn = new mysqli($servername,$username,$password,$dbname);

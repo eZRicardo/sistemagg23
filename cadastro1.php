@@ -4,7 +4,6 @@ include 'connection.php';
 include 'cadastroaction.php';
 echo "  <meta charset='utf-8'>";
 
-echo"aaaaaaa";
 ?>
 <!DOCTYPE html>
 
