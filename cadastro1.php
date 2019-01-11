@@ -1,8 +1,10 @@
 <?php 
-
+ini_set('display_errors', '1');
 include 'connection.php';
 include 'cadastroaction.php';
 echo "  <meta charset='utf-8'>";
+
+echo"aaaaaaa";
 ?>
 <!DOCTYPE html>
 
@@ -45,10 +47,10 @@ echo "  <meta charset='utf-8'>";
     <div class="setor">
         <select>
    <?php
-      $sql = $pdo->prepare("SELECT id_setor FROM associado");
+      $sql = $pdo->prepare("SELECT id FROM setor");
       $sql->execute();
       while($ln = $sql->fetchObject()){
-         echo '<option value="'.$ln->id_setor.'">'.$ln->id_setor.'</option>';
+         echo '<option value="'.$ln->id.'">'.$ln->nome.'</option>';
       }
    ?>
 </select>
