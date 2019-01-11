@@ -34,6 +34,33 @@ if(isset($_GET['engenharia'])){
 </head>
 <body>
 <?php include 'navbar.html'; ?>
+<form>
+<table id="tabelafiltro" class="table">
+	<tr>
+		<td rowspan="2">Filtros</td>
+		<td>Engenharia 
+			<select name="engenharia">
+				<option value=""></option>
+				<?php 
+					$sql = "SELECT id, nome FROM engenharia; "; 
+					$result = $conn->query($sql);
+
+					while($row = $result->fetch_assoc()){
+						$selected = "";
+						if($row[nome] == $engenharia){
+							$selected = "selected";
+						}
+						echo "<option value ='$row[id]' $selected >$row[nome]</option>";
+					}
+				?>	
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>Setor</td>
+	</tr>
+</table>
+</form>
 <center>
 <h1>Associados</h1>
 <table id="tabelaassociados" class="table table-striped">
