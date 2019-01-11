@@ -1,7 +1,7 @@
 <?php 
 ini_set('display_errors', '1');
 include 'connection.php';
-include 'cadastroaction.php';
+// include 'cadastroaction.php';
 echo "  <meta charset='utf-8'>";
 
 ?>
@@ -45,15 +45,22 @@ echo "  <meta charset='utf-8'>";
             <br>
     <div class="setor">
         <select>
-   <?php
-      $sql = $pdo->prepare("SELECT id FROM setor");
-      $sql->execute();
-      while($ln = $sql->fetchObject()){
-         echo '<option value="'.$ln->id.'">'.$ln->nome.'</option>';
-      }
-   ?>
-</select>
-
+          <option value="">Selecione</option>
+              <?php
+              $sql = "SELECT id,nome FROM setor WHERE id > -1 ";
+              $result = $conexao->query($sql);
+              $row = $result->fetch_assoc();
+              while($row){
+                $selected = "";
+                if($row['id'] == $setor_id) {
+                  $selected = "selected";
+                }
+                echo "<option value='".$row['id']."' $selected>".$row['nome']."</option>";
+                $row = $result->fetch_assoc();
+              }
+              ?>
+              <option value="-1" <?php if($setor_id == '-1') echo "selected"; ?>>Outros</option>
+        </select>
     </div>
     <br>
     <div class="engenharia">

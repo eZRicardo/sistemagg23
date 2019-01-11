@@ -1,5 +1,4 @@
 <?php 
-
 $servername = 'sql176.main-hosting.eu.';
 $username = 'u959253842_pj';
 $password = "XHujKWxFcT8Q";

@@ -18,7 +18,7 @@ $senha = $_POST['senha'];
 $sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','$senha',
 	   '$engenharia','$setor')";
 
-$result = $connexão->query($sql);
+$result = $conn->query($sql);
 
 if($result){
 
