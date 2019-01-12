@@ -54,13 +54,8 @@ echo "  <meta charset='utf-8'>";
              
               while($row){
                 $selected = "";
-                if($row['id']) {
-                  $selected = "selected";
-                
-                }
                 echo "<option value='".$row['id']."' $selected>".$row['nome']."</option>";
                 $row = $result->fetch_assoc();
-                
               }
               ?>
               <option value="-1" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
