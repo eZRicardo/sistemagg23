@@ -48,18 +48,22 @@ echo "  <meta charset='utf-8'>";
           <option value="">Selecione</option>
               <?php
               $sql = "SELECT id,nome FROM setor WHERE id > -1 ";
-              $result = $conexao->query($sql);
+              $result = $conn->query($sql);
+              
               $row = $result->fetch_assoc();
+             
               while($row){
                 $selected = "";
-                if($row['id'] == $setor_id) {
+                if($row['id']) {
                   $selected = "selected";
+                
                 }
                 echo "<option value='".$row['id']."' $selected>".$row['nome']."</option>";
                 $row = $result->fetch_assoc();
+                
               }
               ?>
-              <option value="-1" <?php if($setor_id == '-1') echo "selected"; ?>>Outros</option>
+              <option value="-1" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
         </select>
     </div>
     <br>

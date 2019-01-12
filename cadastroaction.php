@@ -15,10 +15,11 @@ $login = $_POST['login'];
 $senha = $_POST['senha'];
 
 
-$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','$senha',
+$sql = "INSERT INTO associado(nome,login,senha,id_engenharia) VALUES('$nome','$login','$senha',
 	   '$engenharia','$setor')";
 
 $result = $conn->query($sql);
+
 
 if($result){
 
