@@ -20,6 +20,22 @@
 <?php include 'navbar.html'; ?>
 <center>
 	<h2>Engenharias</h2>
+	<table id="tabelaengenharias" class="table table-striped">
+		<thead>
+			<th>Nome</th>
+			<th>Qtd de pessoas</th>
+		</thead>
+		<?php 
+			$sql = "SELECT E.id, E.nome, (SELECT count(*) FROM associado A WHERE A.id_engenharia = E.id) as qtdpessoas FROM engenharia E ";
+			$result = $conn->query($sql);
+			while($row = $result->fetch_assoc()){
+				echo "<tr>";
+				echo "<td>".$row['nome']."</td>";
+				echo "<td>".$row['qtdpessoas']."</td>";
+				echo "</tr>";
+			}
+		?>
+	</table>
 </center>
 </body>
 </html>
