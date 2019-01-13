@@ -6,6 +6,7 @@ if(!isset($_SESSION['id'])){
 }
 
 include 'connection.php';
+include 'util/filtro.php';
 
 global $setor;
 global $nome;
@@ -34,33 +35,7 @@ if(isset($_GET['engenharia'])){
 </head>
 <body>
 <?php include 'navbar.html'; ?>
-<form>
-<table id="tabelafiltro" class="table">
-	<tr>
-		<td rowspan="2">Filtros</td>
-		<td>Engenharia 
-			<select name="engenharia">
-				<option value=""></option>
-				<?php 
-					$sql = "SELECT id, nome FROM engenharia; "; 
-					$result = $conn->query($sql);
-
-					while($row = $result->fetch_assoc()){
-						$selected = "";
-						if($row[nome] == $engenharia){
-							$selected = "selected";
-						}
-						echo "<option value ='$row[id]' $selected >$row[nome]</option>";
-					}
-				?>	
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td>Setor</td>
-	</tr>
-</table>
-</form>
+<?php gerarFiltro(['Engenharia','Setor']); ?>
 <center>
 <h1>Associados</h1>
 <table id="tabelaassociados" class="table table-striped">
@@ -74,7 +49,13 @@ if(isset($_GET['engenharia'])){
 
 	$sql = "SELECT A.nome, S.nome as setor, E.nome as engenharia FROM associado A 
 					INNER JOIN setor S ON A.id_setor = S.id 
-					INNER JOIN engenharia E ON A.id_engenharia = E.id ";
+					INNER JOIN engenharia E ON A.id_engenharia = E.id WHERE 1=1 ";
+	if($_GET['engenharia']){
+		$sql .= " AND E.id = ".$_GET['engenharia'];
+	}
+	if($_GET['setor']){
+		$sql .= " AND S.id = ".$_GET['setor'];
+	}
 
 	$result = $conn->query($sql);
 
