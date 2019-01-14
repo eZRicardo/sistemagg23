@@ -12,16 +12,6 @@ global $setor;
 global $nome;
 global $engenharia;
 
-if(isset($_GET['setor'])){
-	$setor = $_GET['setor'];
-}
-if(isset($_GET['nome'])){
-	$nome = $_GET['nome'];
-}
-if(isset($_GET['engenharia'])){
-	$engenharia = $_GET['engenharia'];
-}
-
 ?>
 
 <!DOCTYPE html>

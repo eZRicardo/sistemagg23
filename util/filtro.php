@@ -40,7 +40,7 @@ function gerarFiltro($arrayFiltros){
 		echo "</td>";
 		$count++;
 	}
-	echo "<td><input class='btn btn-warning' type='submit' /></td>";
+	echo "<td><input class='btn btn-warning' value='Filtrar' type='submit' /></td>";
 	echo "</tr>";
 	echo "</table>";
 	echo "</form>";
