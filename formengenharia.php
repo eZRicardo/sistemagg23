@@ -62,6 +62,7 @@
 	    <input class="form-control" name="nome" id="nomeEngenharia" value="<?php echo $nome; ?>">
 	  </div>
 	  <input type="hidden" name="modo" value="<?php echo $_GET['modo']; ?>">
+	  <input type="hidden" name="id" id="idEngenharia" value="<?php echo $_GET['id']; ?>">
 	  <button onclick="javascript:submit(this.value);" class="btn btn-warning" value="<?php echo $modo; ?>" <?php if($modo == "view") echo "disabled"; ?>>Enviar</button>
 	  <label id="labelResponse"></label>
 	</div>
