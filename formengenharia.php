@@ -50,19 +50,20 @@
 	<meta charset="utf-8">
 	<title>Formulario Engenharia</title>
 	<script src="js/jquery-3.3.1.js"></script>
-	<script type="js/formengenharia.js"></script>
+	<script src="js/formengenharia.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/formengenharia.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
 	<?php include 'navbar.html'; ?>
-	<form id="formularioEng" action="formActionEngenharia.php">
+	<div id="formularioEng">
 	  <div class="form-group">
 	    <label>Nome:</label>
-	    <input class="form-control" name="nome" value="<?php echo $nome; ?>">
+	    <input class="form-control" name="nome" id="nomeEngenharia" value="<?php echo $nome; ?>">
 	  </div>
 	  <input type="hidden" name="modo" value="<?php echo $_GET['modo']; ?>">
-	  <button type="submit" class="btn btn-warning">Enviar</button>
-	</form>
+	  <button onclick="javascript:submit(this.value);" class="btn btn-warning" value="<?php echo $modo; ?>" <?php if($modo == "view") echo "disabled"; ?>>Enviar</button>
+	  <label id="labelResponse"></label>
+	</div>
 </body>
 </html>
