@@ -24,7 +24,7 @@
 	<br>
 	<table>
 	<tr>
-		<td><a href="formengenharia.php"><img src="assets/cadastrarbutton.png">Cadastrar</a></td>
+		<td><a href="formengenharia.php?modo=cadastrar"><img src="assets/cadastrarbutton.png">Cadastrar</a></td>
 	</tr>
 	</table>
 	<br>

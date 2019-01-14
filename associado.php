@@ -8,10 +8,6 @@ if(!isset($_SESSION['id'])){
 include 'connection.php';
 include 'util/filtro.php';
 
-global $setor;
-global $nome;
-global $engenharia;
-
 ?>
 
 <!DOCTYPE html>

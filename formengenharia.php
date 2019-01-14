@@ -38,16 +38,10 @@
 		$nome = $row['nome'];
 	}
 
+	$nome = "";
+
 	if($modo=="view" || $modo=="edit"){
 		getFields();
-	} else if($modo=="delete"){
-		//verificar permissão - Será feito depois no projeto
-		getId();
-		$sql = "DELETE FROM engenharia WHERE id = $id ";
-		$result = $conn->query($sql);
-		if($result){
-			die("SUCCESS");
-		}
 	}
 ?>
 <!DOCTYPE html>
@@ -62,15 +56,13 @@
 </head>
 <body>
 	<?php include 'navbar.html'; ?>
-	<center>
-		<table class="table table-striped">
-			<thead>
-				<th>Nome</th>
-			</thead>
-			<tr>
-				<td><?php echo $nome; ?></td>
-			</tr>
-		</table>
-	</center>
+	<form id="formularioEng" action="formActionEngenharia.php">
+	  <div class="form-group">
+	    <label>Nome:</label>
+	    <input class="form-control" name="nome" value="<?php echo $nome; ?>">
+	  </div>
+	  <input type="hidden" name="modo" value="<?php echo $_GET['modo']; ?>">
+	  <button type="submit" class="btn btn-warning">Enviar</button>
+	</form>
 </body>
 </html>
