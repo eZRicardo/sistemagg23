@@ -22,6 +22,7 @@
 		<a class="btn btn-secondary" href="engenharia.php">Engenharia</a><br>
 		<a class="btn btn-secondary" href="associado.php">Setor</a><br>
 		<a class="btn btn-secondary" href="associado.php">Faltas</a><br>
+		<a class="btn btn-secondary" href="motivofalta.php">Motivo Falta</a><br>
 	</center>
 </body>
 </html>

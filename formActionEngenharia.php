@@ -43,12 +43,11 @@
 			} else {
 				die("ERRO: Não foi passado nome como parametro para o cadastro");
 			}
-			$sql = "ALTER TABLE engenharia SET nome = '$nome' WHERE id = $id";
+			$sql = "UPDATE engenharia SET nome = '$nome' WHERE id = $id";
 			$result = $conn->query($sql);
 			if($result){
 				die("SUCCESS");
 			} else {
-				echo $sql;
 				die("Erro ao alterar no banco de dados");
 			}
 		}

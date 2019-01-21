@@ -53,13 +53,13 @@ CREATE TABLE permissao_grupousuario(
 
 CREATE TABLE tipofalta(
 	id INT PRIMARY KEY AUTO_INCREMENT,
+	peso FLOAT NOT NULL,
 	nome VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE motivofalta(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(30) NOT NULL,
-	peso FLOAT,
 	id_tipofalta INT NOT NULL,
 	FOREIGN KEY (id_tipofalta) REFERENCES tipofalta (id)
 );

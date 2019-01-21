@@ -39,9 +39,12 @@
 	}
 
 	$nome = "";
+	$disabled = "";
 
 	if($modo=="view" || $modo=="edit"){
 		getFields();
+		if($modo == "view")
+			$disabled = "disabled";
 	}
 ?>
 <!DOCTYPE html>
@@ -59,11 +62,11 @@
 	<div id="formularioEng">
 	  <div class="form-group">
 	    <label>Nome:</label>
-	    <input class="form-control" name="nome" id="nomeEngenharia" value="<?php echo $nome; ?>">
+	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nomeEngenharia" value="<?php echo $nome; ?>">
 	  </div>
 	  <input type="hidden" name="modo" value="<?php echo $_GET['modo']; ?>">
 	  <input type="hidden" name="id" id="idEngenharia" value="<?php echo $_GET['id']; ?>">
-	  <button onclick="javascript:submit(this.value);" class="btn btn-warning" value="<?php echo $modo; ?>" <?php if($modo == "view") echo "disabled"; ?>>Enviar</button>
+	  <button onclick="javascript:submit(this.value);" class="btn btn-warning" value="<?php echo $modo; ?>" <?php echo $disabled; ?>>Enviar</button>
 	  <label id="labelResponse"></label>
 	</div>
 </body>
