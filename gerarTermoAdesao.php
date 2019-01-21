@@ -6,11 +6,9 @@
 
 	include 'connection.php';
 
-
-	$nome = "";
+	$id = "";
   $data = "";
 	$disabled = "";
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,12 +25,20 @@
 	<div id="formularioEng">
 	  <div class="form-group">
 	    <label>Nome:</label>
-	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nomeAssociado" value="<?php echo $nome; ?>">
+	    <select class="form-control" <?php echo $disabled; ?> name="id" id="idAssociado" value="<?php echo $id; ?>">
+	    	<option value=""></option>
+	    	<?php
+	    	$sql = "SELECT id, nome FROM associado ORDER BY nome";
+	    	$result = $conn->query($sql);
+	    	while($row = $result->fetch_assoc()){
+	    		echo "<option value='".$row['id']."'>".$row['nome']."</option>";
+	    	}
+	    	?>
+	    	<option value="TODOS">TODOS</option>
+	    </select>
       <label>Data:</label>
-      <input class="form-control" <?php echo $disabled; ?> name="data" id="dataAssociacao" value="<?php echo $data; ?>">
+      <input type="date" class="form-control" <?php echo $disabled; ?> name="data" id="dataAssociacao" value="<?php echo $data; ?>">
 	  </div>
-	  <input type="hidden" name="modo" value="<?php echo $_GET['modo']; ?>">
-	  <input type="hidden" name="id" id="idEngenharia" value="<?php echo $_GET['id']; ?>">
 	  <button onclick="javascript:enviar();" class="btn btn-warning" <?php echo $disabled; ?>>Gerar Formulário</button>
 	  <label id="labelResponse"></label>
 	</div>
