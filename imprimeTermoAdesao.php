@@ -3,8 +3,8 @@
 session_start();
 include 'connection.php';
 
-$nome = "";
-$dataAssociacao = "";
+$nome = $_GET['nome'];
+$dataAssociacao = $_GET['data'];
 require('fpdf.php');
 
 $pdf = new FPDF();

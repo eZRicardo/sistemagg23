@@ -33,7 +33,7 @@
 	  </div>
 	  <input type="hidden" name="modo" value="<?php echo $_GET['modo']; ?>">
 	  <input type="hidden" name="id" id="idEngenharia" value="<?php echo $_GET['id']; ?>">
-	  <button onclick="window.open('imprimeTermoAdesao.php');" class="btn btn-warning" <?php echo $disabled; ?>>Gerar Formulário</button>
+	  <button onclick="javascript:enviar();" class="btn btn-warning" <?php echo $disabled; ?>>Gerar Formulário</button>
 	  <label id="labelResponse"></label>
 	</div>
 </body>
