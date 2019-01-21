@@ -6,33 +6,42 @@ global $setor;
 global $engenharia;
 global $nome;
 global $login;
-global $senha;
+global $password;
+global $modo;
 
 $setor = $_POST['setor'];
-$engenharia = $_POST['eng'];
+$engenharia = $_POST['engenharia'];
 $nome = $_POST['nome'];
 $login = $_POST['login'];
-$senha = $_POST['senha'];
+$password = $_POST['password'];
+$modo = $_POST['modo'];
 
 
-$sql = "INSERT INTO associado(nome,login,senha,id_engenharia) VALUES('$nome','$login','$senha',
-	   '$engenharia','$setor')";
+if(isset($_GET['modo'])){
+		$modo = $_GET['modo'];
+	} else {
+		header("Location:engenharia.php");
+	}
 
-$result = $conn->query($sql);
+	if($modo=="cadastrar"){
+			if(isset($_GET['nome'])){
+				$nome = $_GET['nome'];
+			} else {
+				die("ERRO: Não foi passado nome como parametro para o cadastro");
+			}if(isset($_GET['password'])){
+				$password = $_GET['password'];
+			} else {
+				die("ERRO: Não foi passado senha como parametro para o cadastro");
+			}
+			$md5_password = md5($password);
+			$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','$password','$engenharia','$setor')";
+			$result = $conn->query($sql);
 
-
-if($result){
-
-	echo "SUCCESS";
-
-}else{
-
-	echo "Falha ao inserir os dados do cadastro";
-}
-
-if($setor == " " || $engenharia == " " || $login == " " || $senha == " " || $nome == " ")
-
-    echo "Dados insuficientes para o cadastro";
-
+			if($result){
+				echo "SUCCESS";
+			} else {
+				die("Erro ao cadastrar engenharia no banco");
+			}
+		}
 ?>
 
