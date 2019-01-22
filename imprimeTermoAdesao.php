@@ -15,11 +15,16 @@ $sql = "SELECT A.nome as nome, E.nome as engenharia, S.nome as setor FROM associ
 				INNER JOIN engenharia E on A.id_engenharia = E.id 
 				INNER JOIN setor S ON A.id_setor = S.id 
 				WHERE A.id = $id";
-$result = $conn->query($sql);
-$nome = "";
 
+$result = $conn->query($sql);
+
+$nome = "";
+$engenharia = "";
+$setor = "";
 if($row = $result->fetch_assoc()){
 	$nome = $row['nome'];
+	$engenharia = $row['engenharia'];
+	$setor = $row['setor'];
 }
 
 
@@ -30,5 +35,10 @@ $pdf->Cell(40,10,'Nome: ');
 $pdf->Cell(40,10, $nome);
 $pdf->Cell(40,10,'Data: ');
 $pdf->Cell(40,10,$dataAssociacao);
+$pdf->Cell(40,10,'Engenharia: ');
+$pdf->Cell(40,10, $engenharia);
+$pdf->Cell(40,10,'Setor: ');
+$pdf->Cell(40,10,$setor);
+
 $pdf->Output('I',$nome.'.pdf');
 ?>

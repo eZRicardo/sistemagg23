@@ -5,7 +5,6 @@
 	}
 
 	include 'connection.php';
-	include 'util/filtro.php';
 
 ?>
 <!DOCTYPE html>
@@ -15,8 +14,8 @@
 	<title>Engenharias</title>
 	<script src="js/jquery-3.3.1.js"></script>
 	<script src="js/engenharia.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/engenharia.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/engenharia.css">
 </head>
 <body>
 <?php include 'navbar.html'; ?>
@@ -36,7 +35,7 @@
 			<th></th>
 		</thead>
 		<?php 
-			$sql = "SELECT E.id, E.nome, (SELECT count(*) FROM associado A WHERE A.id_engenharia = E.id) as qtdpessoas FROM engenharia E ";
+			$sql = "SELECT E.id, E.nome, (SELECT count(*) FROM associado A WHERE A.id_engenharia = E.id) as qtdpessoas FROM engenharia E ORDER BY E.nome";
 			$result = $conn->query($sql);
 			while($row = $result->fetch_assoc()){
 				echo "<tr>";

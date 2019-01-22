@@ -18,11 +18,19 @@ include 'util/filtro.php';
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/associado.css">
 	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/associado.js"></script>
 </head>
 <body>
 <?php include 'navbar.html'; ?>
 <?php gerarFiltro(['Engenharia','Setor']); ?>
 <center>
+<br>
+<table>
+<tr>
+	<td><a href="formassociado.php?modo=cadastrar"><img src="assets/cadastrarbutton.png">Cadastrar</a></td>
+</tr>
+</table>
+<br>
 <h1>Associados</h1>
 <table id="tabelaassociados" class="table table-striped">
 <thead>
@@ -33,9 +41,10 @@ include 'util/filtro.php';
 </thead>
 <?php
 
-	$sql = "SELECT A.nome, S.nome as setor, E.nome as engenharia FROM associado A 
+	$sql = "SELECT A.id, A.nome, S.nome as setor, E.nome as engenharia FROM associado A 
 					INNER JOIN setor S ON A.id_setor = S.id 
 					INNER JOIN engenharia E ON A.id_engenharia = E.id WHERE 1=1 ";
+
 	if($_GET['engenharia']){
 		$sql .= " AND E.id = ".$_GET['engenharia'];
 	}
@@ -57,7 +66,13 @@ include 'util/filtro.php';
 		echo "<td>$row[nome]</td>";
 		echo "<td>$row[setor]</td>";
 		echo "<td>$row[engenharia]</td>";
-		echo "<td></td>";
+
+		$viewbutton = "<a href='formassociado.php?modo=view&idAssociado=$row[id]'><img src='assets/viewbutton.png'></a> ";
+		$editbutton = "<a href='formassociado.php?modo=edit&idAssociado=$row[id]'><img src='assets/editbutton.png'></a> ";
+		$deletebutton = "<a href='javascript:deletebutton($row[id])'><img src='assets/deletebutton.png'></a> ";
+		$links = $viewbutton.$editbutton.$deletebutton;
+
+		echo "<td>".$links."</td>";
 		echo "</tr>";
 	}
 
