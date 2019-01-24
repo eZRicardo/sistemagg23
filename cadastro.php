@@ -28,19 +28,19 @@ echo "  <meta charset='utf-8'>";
     <div class="nome">
             <label>Nome</label>
             <br>
-            <input id="nome" name="nome" type="text" size="70" maxlength="60">
+            <input id="nome" name="nome" value="<?php echo $nome; ?>" type="text" size="70" maxlength="60">
             <br>
             <br>
         </div>
         <div class="associado">
                 <label>Login</label>
                 <br>
-                <input id="login" name="login" type="text">
+                <input id="login" name="login" value="<?php echo $login; ?>" type="text">
                 <br>
                 <br>
                 <label>Senha</label>
                 <br>
-                <input id="password" name="passord" type="password">
+                <input id="password" name="password" value="<?php echo $password; ?>" type="password">
             </div>    
             <br>
     <div class="setor">
@@ -89,7 +89,8 @@ echo "  <meta charset='utf-8'>";
     </div>
     <br>
     <br>
-    <button name = "modo" value="cadastrar" class="botton" onclick="cadastroaction();">cadastrar</button>
+    <button name = "modo" value="cadastrar" class="botton" onclick="javascript:submit(cadastrar);">cadastrar</button>
+    <label id="labelResponse"></label>
 	<font color="red" id="response"></font>
  </div>
 

@@ -14,8 +14,6 @@ $engenharia = $_POST['engenharia'];
 $nome = $_POST['nome'];
 $login = $_POST['login'];
 $password = $_POST['password'];
-$modo = $_POST['modo'];
-
 
 if(isset($_GET['modo'])){
 		$modo = $_GET['modo'];
@@ -33,7 +31,6 @@ if(isset($_GET['modo'])){
 			} else {
 				die("ERRO: Não foi passado senha como parametro para o cadastro");
 			}
-			$md5_password = md5($password);
 			$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','$password','$engenharia','$setor')";
 			$result = $conn->query($sql);
 
