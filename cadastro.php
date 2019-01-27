@@ -2,13 +2,10 @@
 
 include 'connection.php';
 
-echo "  <meta charset='utf-8'>";
-
 ?>
+
 <!DOCTYPE html>
-
 <html>
-
 <head>
 
     <link rel="stylesheet" type="text/css" href="cadastro.css">
@@ -28,26 +25,26 @@ echo "  <meta charset='utf-8'>";
     <div class="nome">
             <label>Nome</label>
             <br>
-            <input id="nome" name="nome" value="<?php echo $nome; ?>" type="text" size="70" maxlength="60">
+            <input id="nome" name="nome" value="" type="text" size="70" maxlength="60">
             <br>
             <br>
         </div>
         <div class="associado">
                 <label>Login</label>
                 <br>
-                <input id="login" name="login" value="<?php echo $login; ?>" type="text">
+                <input id="login" name="login" value="" type="text">
                 <br>
                 <br>
                 <label>Senha</label>
                 <br>
-                <input id="password" name="password" value="<?php echo $password; ?>" type="password">
+                <input id="senha" name="senha" value="" type="password">
             </div>    
             <br>
     <div class="setor">
         <td>Setor:</td>
         <br>
         <td><select>
-          <option name="setor">Selecione</option>
+          <option name="setor" id="setor">Selecione</option>
               <?php
               $sql = "SELECT id,nome FROM setor WHERE id > -1 ";
               $result = $conn->query($sql);
@@ -69,7 +66,7 @@ echo "  <meta charset='utf-8'>";
       <td>Engenharia:</td>
       <br>
       <td><select>
-          <option name="engenharia">Selecione</option>
+          <option name="engenharia" id="engenharia">Selecione</option>
               <?php
               $sql = "SELECT id,nome FROM engenharia WHERE id > -1 ";
               $result = $conn->query($sql);
@@ -89,7 +86,7 @@ echo "  <meta charset='utf-8'>";
     </div>
     <br>
     <br>
-    <button name = "modo" value="cadastrar" class="botton" onclick="javascript:submit(cadastrar);">cadastrar</button>
+    <button name = "modo" id="modo" class="botton" onclick="javascript:cadastroaction(this.value);" value="cadastrar">cadastrar</button>
     <label id="labelResponse"></label>
 	<font color="red" id="response"></font>
  </div>
