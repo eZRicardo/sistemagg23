@@ -27,20 +27,21 @@ if(isset($_GET['modo'])){
 	}
 
 	if($modo=="cadastrar"){
-			if(isset($_GET['nome'])){
+			if(isset($_GET['nome']) AND !empty($_POST['nome'])){
 				$nome = $_GET['nome'];
 			} else {
 				die("ERRO: Não foi passado nome como parametro para o cadastro");
-			}if(isset($_GET['senha'])){
+			}if(isset($_GET['senha']) AND !empty($_POST['senha'])){
 				$senha = $_GET['senha'];
 			} else {
 				die("ERRO: Não foi passado senha como parametro para o cadastro");
-			}if(isset($_GET['login'])){
+			}if(isset($_GET['login']) AND !empty($_POST['login'])){
 				$login = $_GET['login'];
 			} else {
 				die("ERRO: Não foi passado login como parametro para o cadastro");
 			}
 			$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','senha','$engenharia','$setor')";
+
 			$result = $conn->query($sql);
 		
 			if($result){

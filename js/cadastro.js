@@ -18,16 +18,16 @@ if(modo){
 
 		success: function(response){
 			if(response == "SUCCESS"){
-				window.location.href = "engenharia.php";
+                labelResponse.innerHTML = "<font color='green'>Concluido com sucesso</font>";
+				window.location = "engenharia.php";
 			} else {
-				var label = document.getElementById("response");
-		      	labelResponse.innerHTML = "<font color='green'>Concluido com sucesso</font>";
+				alert('Erro no cadastro');
 			}
 		},
-        error: function()
-        {
-            alert('Erro no cadastro');
-		}
+  //       error: function()
+  //       {
+  //           alert('Erro no cadastro');
+		// }
     });
         }
 }
