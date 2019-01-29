@@ -43,8 +43,8 @@ include 'connection.php';
     <div class="setor">
         <td>Setor:</td>
         <br>
-        <td><select>
-          <option name="setor" id="setor">Selecione</option>
+        <td><select  name="setor" id="setor">
+          <option>Selecione</option>
               <?php
               $sql = "SELECT id,nome FROM setor WHERE id > -1 ";
               $result = $conn->query($sql);
@@ -57,7 +57,6 @@ include 'connection.php';
                 $row = $result->fetch_assoc();
               }
               ?>
-              <option value="-1" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
         </select></td>
     </div>
     <br>
@@ -65,8 +64,8 @@ include 'connection.php';
         <tr>
       <td>Engenharia:</td>
       <br>
-      <td><select>
-          <option name="engenharia" id="engenharia">Selecione</option>
+      <td><select  name="engenharia" id="engenharia">
+          <option>Selecione</option>
               <?php
               $sql = "SELECT id,nome FROM engenharia WHERE id > -1 ";
               $result = $conn->query($sql);
@@ -79,7 +78,6 @@ include 'connection.php';
                 $row = $result->fetch_assoc();
               }
               ?>
-              <option value="-1" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
         </select>
     </td>
     </tr>
