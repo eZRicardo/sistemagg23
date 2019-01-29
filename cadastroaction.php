@@ -11,14 +11,14 @@ global $setor;
 global $engenharia;
 global $nome;
 global $login;
-global $password;
+global $senha;
 global $modo;
 
 $setor = $_POST['setor'];
 $engenharia = $_POST['engenharia'];
 $nome = $_POST['nome'];
 $login = $_POST['login'];
-$password = $_POST['password'];
+$senha = $_POST['senha'];
 
 if(isset($_GET['modo'])){
 		$modo = $_GET['modo'];
@@ -27,18 +27,23 @@ if(isset($_GET['modo'])){
 	}
 
 	if($modo=="cadastrar"){
-			if(isset($_GET['nome'])){
+			if(isset($_GET['nome']) AND !empty($_POST['nome'])){
 				$nome = $_GET['nome'];
 			} else {
 				die("ERRO: Não foi passado nome como parametro para o cadastro");
-			}if(isset($_GET['password'])){
-				$password = $_GET['password'];
+			}if(isset($_GET['senha']) AND !empty($_POST['senha'])){
+				$senha = $_GET['senha'];
 			} else {
 				die("ERRO: Não foi passado senha como parametro para o cadastro");
+			}if(isset($_GET['login']) AND !empty($_POST['login'])){
+				$login = $_GET['login'];
+			} else {
+				die("ERRO: Não foi passado login como parametro para o cadastro");
 			}
-			$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','$password','$engenharia','$setor')";
-			$result = $conn->query($sql);
+			$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','senha','$engenharia','$setor')";
 
+			$result = $conn->query($sql);
+		
 			if($result){
 				echo "SUCCESS";
 			} else {

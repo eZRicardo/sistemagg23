@@ -3,8 +3,9 @@ function cadastroaction(modo){
     var nome = document.getElementById("nome").value;
     var engenharia = document.getElementById("engenharia").value;
     var login = document.getElementById("login").value;
-    var password = document.getElementById("password").value;
+    var senha = document.getElementById("senha").value;
     var setor = document.getElementById("setor").value;
+    
 if(modo){
     $.ajax({
         
@@ -12,21 +13,21 @@ if(modo){
         
         url:'cadastroaction.php',
         
-        data:{ 'setor': setor, 'password': password, 'login': login, 'engenharia': engenharia,
+        data:{ 'setor': setor, 'senha': senha, 'login': login, 'engenharia': engenharia,
          'nome': nome, 'modo': modo},
 
 		success: function(response){
-			if(responde == "SUCCESS"){
-				window.location.href = "engenharia.php";
+			if(response == "SUCCESS"){
+                labelResponse.innerHTML = "<font color='green'>Concluido com sucesso</font>";
+				window.location = "engenharia.php";
 			} else {
-				var label = document.getElementById("response");
-		      	labelResponse.innerHTML = "<font color='green'>Concluido com sucesso</font>";
+				alert('Erro no cadastro');
 			}
 		},
-        error: function()
-        {
-            alert('Erro no cadastro');
-		}
+  //       error: function()
+  //       {
+  //           alert('Erro no cadastro');
+		// }
     });
         }
 }
