@@ -9,7 +9,7 @@ function cadastroaction(modo){
 if(modo){
     $.ajax({
         
-        type: 'GET',
+        type: 'POST',
         
         url:'cadastroaction.php',
         
@@ -21,13 +21,14 @@ if(modo){
                 labelResponse.innerHTML = "<font color='green'>Concluido com sucesso</font>";
 				window.location = "engenharia.php";
 			} else {
-				alert('Erro no cadastro');
+				var label = document.getElementById("response");
+                label.innerHTML = "Dados de cadastros inválidos";
 			}
 		},
-  //       error: function()
-  //       {
-  //           alert('Erro no cadastro');
-		// }
+        error: function()
+        {
+            alert('Erro no cadastro');
+		}
     });
         }
 }

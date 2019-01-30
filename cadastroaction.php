@@ -40,14 +40,14 @@ if(isset($_GET['modo'])){
 			} else {
 				die("ERRO: Não foi passado login como parametro para o cadastro");
 			}
-			$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','senha','$engenharia','$setor')";
+			$sql = "INSERT INTO associado(nome,login,senha,id_engenharia,id_setor) VALUES('$nome','$login','$senha','$engenharia','$setor')";
 
 			$result = $conn->query($sql);
 		
 			if($result){
 				echo "SUCCESS";
 			} else {
-				die("Erro ao cadastrar engenharia no banco");
+				die("Erro ao cadastrar no banco");
 			}
 		}
 ?>
