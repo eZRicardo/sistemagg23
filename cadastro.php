@@ -43,7 +43,11 @@ include 'connection.php';
     <div class="setor">
         <td>Setor:</td>
         <br>
+<<<<<<< HEAD
         <td><select name="setor" id="setor">
+=======
+        <td><select  name="setor" id="setor">
+>>>>>>> 6b549b0d826980acdf7389841e39315eafadcee9
           <option>Selecione</option>
               <?php
               $sql = "SELECT id,nome FROM setor WHERE id > -1 ";
@@ -57,7 +61,10 @@ include 'connection.php';
                 $row = $result->fetch_assoc();
               }
               ?>
+<<<<<<< HEAD
               <option value="" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
+=======
+>>>>>>> 6b549b0d826980acdf7389841e39315eafadcee9
         </select></td>
     </div>
     <br>
@@ -65,7 +72,11 @@ include 'connection.php';
         <tr>
       <td>Engenharia:</td>
       <br>
+<<<<<<< HEAD
       <td><select name="engenharia" id="engenharia">
+=======
+      <td><select  name="engenharia" id="engenharia">
+>>>>>>> 6b549b0d826980acdf7389841e39315eafadcee9
           <option>Selecione</option>
               <?php
               $sql = "SELECT id,nome FROM engenharia WHERE id > -1 ";
@@ -79,7 +90,10 @@ include 'connection.php';
                 $row = $result->fetch_assoc();
               }
               ?>
+<<<<<<< HEAD
               <option value="" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
+=======
+>>>>>>> 6b549b0d826980acdf7389841e39315eafadcee9
         </select>
     </td>
     </tr>
