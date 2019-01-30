@@ -9,7 +9,7 @@ function cadastroaction(modo){
 if(modo){
     $.ajax({
         
-        type: 'POST',
+        type: 'GET',
         
         url:'cadastroaction.php',
         

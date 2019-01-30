@@ -8,7 +8,7 @@ include 'connection.php';
 <html>
 <head>
 
-    <link rel="stylesheet" type="text/css" href="cadastro.css">
+    <link rel="stylesheet" type="text/css" href="css/cadastro.css">
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/cadastro.js"></script>
     <title>Cadastro</title>
@@ -18,10 +18,10 @@ include 'connection.php';
 
 <body>
 
- <div class="dados">
+ <div class="dados-cadastro">
      <br>
     <center><h3>Cadastro</h3></center>
-    
+    <div id = dados class="dados">
     <div class="nome">
             <label>Nome</label>
             <br>
@@ -57,7 +57,7 @@ include 'connection.php';
                 $row = $result->fetch_assoc();
               }
               ?>
-              <option value="-1" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
+              <option value="" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
         </select></td>
     </div>
     <br>
@@ -79,7 +79,7 @@ include 'connection.php';
                 $row = $result->fetch_assoc();
               }
               ?>
-              <option value="-1" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
+              <option value="" <?php if($row['id'] == '-1') echo "selected"; ?>>Outros</option>
         </select>
     </td>
     </tr>
@@ -90,6 +90,7 @@ include 'connection.php';
     <label id="labelResponse"></label>
 	<font color="red" id="response"></font>
  </div>
+</div>
 
 </body>
 
