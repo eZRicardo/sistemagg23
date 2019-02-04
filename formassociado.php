@@ -72,8 +72,51 @@
 	<div id="formularioAssociado">
 	  <div class="form-group">
 	    <label>Nome:</label>
-	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nomeAssociado" value="<?php echo $nome; ?>">
-	    <label>Engenharia:</label>
+	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nomeAssociado" value="<?php echo $nome; ?>" required>
+	    <label>Data de Nascimento:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="date" name="dataNascimento" id="dataNascimento">
+	    <label>Endereço:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="nomeEndereco" id="nomeEndereco">
+	    <label>Cidade:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="nomeCidade" id="nomeCidade">
+	    <label>Bairro:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="nomeBairro" id="nomeBairro">
+	    <label>UF:</label>
+	    <select class="form-control" <?php echo $disabled; ?> name="uf" id="uf" required>
+	    	<option value=""></option>
+	    	<option value="AC">AC</option>
+	    	<option value="AL">AL</option>
+	    	<option value="AP">AP</option>
+	    	<option value="AM">AM</option>
+	    	<option value="BA">BA</option>
+	    	<option value="CE">CE</option>
+	    	<option value="DF">DF</option>
+	    	<option value="ES">ES</option>
+	    	<option value="GO">GO</option>
+	    	<option value="MA">MA</option>
+	    	<option value="MT">MT</option>
+	    	<option value="MS">MS</option>
+	    	<option value="MG">MG</option>
+	    	<option value="PA">PA</option>
+	    	<option value="PB">PB</option>
+	    	<option value="PR">PR</option>
+	    	<option value="PE">PE</option>
+	    	<option value="PI">PI</option>
+	    	<option value="RJ">RJ</option>
+	    	<option value="RN">RN</option>
+	    	<option value="RS">RS</option>
+	    	<option value="RO">RO</option>
+	    	<option value="RR">RR</option>
+	    	<option value="SC">SC</option>
+	    	<option value="SP">SP</option>
+	    	<option value="SE">SE</option>
+	    	<option value="TO">TO</option>
+	    </select>
+	    <label>CEP</label>
+		  <input class="form-control" <?php echo $disabled; ?> type="number" name="cep" id="cep">  
+	    <label>E-mail:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="E-mail" name="nomeEmail" id="nomeEmail">
+	    <label>Curso:</label>
 	    <select class="form-control" name="idEngenharia" id="idEngenharia" <?php echo $disabled; ?>>
 	    	<option value=""></option>
 	    	<?php
