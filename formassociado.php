@@ -14,7 +14,7 @@
 
 	function getId(){
 		global $idAssociado;
-		if(isset($_GET['idAssociado'])){	
+		if(isset($_GET['idAssociado'])){
 			$idAssociado = $_GET['idAssociado'];
 		} else {
 			header("Location: associado.php");
@@ -28,7 +28,7 @@
 
 		getId();
 
-		$sql = "SELECT A.id, A.nome as nome, E.nome as engenharia, E.id as idEngenharia, S.nome as setor, S.id as idSetor FROM associado A 
+		$sql = "SELECT A.id, A.nome as nome, E.nome as engenharia, E.id as idEngenharia, S.id as idSetor FROM associado A 
 		INNER JOIN engenharia E ON A.id_engenharia = E.id
 		INNER JOIN setor S ON A.id_setor = S.id WHERE A.id = $idAssociado ";
 		$result = $conn->query($sql);
@@ -37,15 +37,11 @@
 
 		global $nome;
 		global $engenharia;
-		global $idEngenharia;
 		global $setor;
-		global $idSetor;
 
 		$nome = $row['nome'];
-		$engenharia = $row['engenharia'];
-		$idEngenharia = $row['idEngenharia'];
-		$setor = $row['setor'];
-		$idSetor = $row['idSetor'];
+		$engenharia = $row['idEngenharia'];
+		$setor = $row['idSetor'];
 	}
 
 	$nome = "";
@@ -53,8 +49,11 @@
 
 	if($modo=="view" || $modo=="edit"){
 		getFields();
-		if($modo == "view")
+		if($modo == "view"){
 			$disabled = "disabled";
+		}
+	} else {
+		$idAssociado = "";
 	}
 ?>
 <!DOCTYPE html>
@@ -69,20 +68,20 @@
 </head>
 <body>
 	<?php include 'navbar.html'; ?>
-	<div id="formularioAssociado">
+	<form action="formActionAssociado.php" method="get" id="formularioAssociado">
 	  <div class="form-group">
-	    <label>Nome:</label>
-	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nomeAssociado" value="<?php echo $nome; ?>" required>
+	    <label>Nome Completo:</label>
+	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nome" value="<?php echo $nome; ?>" required>
 	    <label>Data de Nascimento:</label>
 	    <input class="form-control" <?php echo $disabled; ?> type="date" name="dataNascimento" id="dataNascimento">
 	    <label>Endereço:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" name="nomeEndereco" id="nomeEndereco">
-	    <label>Cidade:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" name="nomeCidade" id="nomeCidade">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="endereco" id="endereco">
 	    <label>Bairro:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" name="nomeBairro" id="nomeBairro">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="bairro" id="bairro">
+	    <label>Cidade:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="cidade" id="cidade">
 	    <label>UF:</label>
-	    <select class="form-control" <?php echo $disabled; ?> name="uf" id="uf" required>
+	    <select class="form-control" <?php echo $disabled; ?> name="uf" id="uf">
 	    	<option value=""></option>
 	    	<option value="AC">AC</option>
 	    	<option value="AL">AL</option>
@@ -112,34 +111,47 @@
 	    	<option value="SE">SE</option>
 	    	<option value="TO">TO</option>
 	    </select>
-	    <label>CEP</label>
-		  <input class="form-control" <?php echo $disabled; ?> type="number" name="cep" id="cep">  
+	    <label>CEP:</label>
+		  <input class="form-control" <?php echo $disabled; ?> pattern="[0-9]{8}$" type="text" name="cep" id="cep">
+		  <label>Telefone:</label>
+		  <input class="form-control" <?php echo $disabled; ?> type="tel" maxlength="15" pattern="[0-9]{7,10}$" name="telefone" id="telefone">
+		  <label>Celular:</label>
+		  <input class="form-control" <?php echo $disabled; ?> type="tel" maxlength="15" pattern="[0-9]{7,10}$" name="celular" id="celular">
 	    <label>E-mail:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="E-mail" name="nomeEmail" id="nomeEmail">
+	    <input class="form-control" <?php echo $disabled; ?> type="E-mail" name="email" id="email"
+	    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 	    <label>Curso:</label>
-	    <select class="form-control" name="idEngenharia" id="idEngenharia" <?php echo $disabled; ?>>
+	    <select class="form-control" name="curso" id="curso" <?php echo $disabled; ?> required>
 	    	<option value=""></option>
 	    	<?php
 	    	$sql = "SELECT id, nome FROM engenharia ORDER BY nome";
 	    	$result = $conn->query($sql);
 	    	while($row = $result->fetch_assoc()){
 	    		$selected = "";
-	    		if($idEngenharia == $row['id']){
+	    		if($engenharia == $row['id']){
 	    			$selected = "selected";
 	    		}
 	    		echo "<option value='".$row['id']."' $selected>".$row['nome']."</option>";
 	    	}
 	    	?>
 	    </select>
+	    <label>Período:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{4}.[1-2]$" name="periodo" id="periodo">
+	    <label>Turno:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="turno" id="turno">
+	    <label>RG:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{7}$" name="rg" id="rg">
+	    <label>CPF:</label>
+	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{11}$" name="cpf" id="cpf">
 	    <label>Setor:</label>
-	    <select class="form-control" name="idSetor" id="idSetor" <?php echo $disabled; ?>>
+	    <select class="form-control" name="setor" id="setor" <?php echo $disabled; ?> required>
 	    	<option value=""></option>
 	    	<?php
 	    	$sql = "SELECT id, nome FROM setor ORDER BY nome";
 	    	$result = $conn->query($sql);
 	    	while($row = $result->fetch_assoc()){
 	    		$selected = "";
-	    		if($idSetor == $row['id']){
+	    		if($setor == $row['id']){
 	    			$selected = "selected";
 	    		}
 	    		echo "<option value='".$row['id']."' $selected>".$row['nome']."</option>";
@@ -148,11 +160,11 @@
 	    </select>
 	  </div>
 	  <input type="hidden" name="modo" value="<?php echo $_GET['modo']; ?>">
-	  <input type="hidden" name="id" id="idAssociado" value="<?php echo $_GET['idAssociado']; ?>">
+	  <input type="hidden" name="id" id="idAssociado" value="<?php echo $idAssociado; ?>">
 	  <?php if(!$disabled){ ?>
-	  <button onclick="javascript:submit(this.value);" class="btn btn-warning" value="<?php echo $modo; ?>">Enviar</button>
+	  <input type="submit" class="btn btn-warning">
 	  <label id="labelResponse"></label>
 	  <?php } ?>
-	</div>
+	</form>
 </body>
 </html>
