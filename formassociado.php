@@ -117,20 +117,24 @@
 	    	<option value=""></option>
 	    	<?php
 	    	$arrayUf = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
-	    	foreach ($arrayUf as $key => $uf) {
-	    		echo "<option value='$uf'>$uf</option>";
+	    	foreach ($arrayUf as $key => $value) {
+	    		$selected = "";
+	    		if($uf == $value){
+	    			$selected = "selected";
+	    		}
+	    		echo "<option value='$value' $selected>$value</option>";
 	    	}
 	    	?>
 	    </select>
 	    <label>CEP:</label>
-		  <input class="form-control" <?php echo $disabled; ?> pattern="[0-9]{8}$" type="text" name="cep" id="cep">
+		  <input class="form-control" <?php echo $disabled; ?> pattern="[0-9]{8}$" type="text" name="cep" id="cep" value="<?php echo $cep; ?>">
 		  <label>Telefone:</label>
-		  <input class="form-control" <?php echo $disabled; ?> type="tel" maxlength="15" pattern="[0-9]{7,10}$" name="telefone" id="telefone">
+		  <input class="form-control" <?php echo $disabled; ?> type="tel" maxlength="15" pattern="[0-9]{7,10}$" name="telefone" id="telefone" value="<?php echo $telefone; ?>">
 		  <label>Celular:</label>
-		  <input class="form-control" <?php echo $disabled; ?> type="tel" maxlength="15" pattern="[0-9]{7,10}$" name="celular" id="celular">
+		  <input class="form-control" <?php echo $disabled; ?> type="tel" maxlength="15" pattern="[0-9]{7,10}$" name="celular" id="celular" value="<?php echo $celular; ?>">
 	    <label>E-mail:</label>
 	    <input class="form-control" <?php echo $disabled; ?> type="E-mail" name="email" id="email"
-	    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+	    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="<?php echo $email; ?>">
 	    <label>Curso:</label>
 	    <select class="form-control" name="curso" id="curso" <?php echo $disabled; ?> required>
 	    	<option value=""></option>
@@ -147,13 +151,13 @@
 	    	?>
 	    </select>
 	    <label>Período:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{4}.[1-2]$" name="periodo" id="periodo">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{4}.[1-2]$" name="periodo" id="periodo" value="<?php echo $periodo; ?>">
 	    <label>Turno:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" name="turno" id="turno">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="turno" id="turno" value="<?php echo $turno; ?>">
 	    <label>RG:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{7}$" name="rg" id="rg">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{7}$" name="rg" id="rg" value="<?php echo $rg; ?>">
 	    <label>CPF:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{11}$" name="cpf" id="cpf">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{11}$" name="cpf" id="cpf" value="<?php echo $cpf; ?>">
 	    <label>Setor:</label>
 	    <select class="form-control" name="setor" id="setor" <?php echo $disabled; ?> required>
 	    	<option value=""></option>

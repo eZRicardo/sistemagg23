@@ -93,7 +93,7 @@
 			}
 			$sql = "UPDATE associado SET nome = '$nome', id_setor = $setor, id_engenharia = $engenharia WHERE id = $idAssociado;";
 			$sql .= "UPDATE dados_associado SET data_nascimento = '$dataNascimento', endereco = '$endereco', bairro = '$bairro', cidade = '$cidade', uf = '$uf', cep = '$cep', telefone = '$telefone', celular = '$celular', email = '$email', id_curso = '$curso', periodo = '$periodo', turno = '$turno', rg = '$rg', cpf = '$cpf' WHERE id_associado = $idAssociado";
-			die($sql);
+
 			$result = $conn->multi_query($sql);
 			if($result){
 				$_SESSION['formassociado'] = "";
