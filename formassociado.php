@@ -143,7 +143,7 @@
 	    	$result = $conn->query($sql);
 	    	while($row = $result->fetch_assoc()){
 	    		$selected = "";
-	    		if($engenharia == $row['id']){
+	    		if($curso == $row['id']){
 	    			$selected = "selected";
 	    		}
 	    		echo "<option value='".$row['id']."' $selected>".$row['nome']."</option>";

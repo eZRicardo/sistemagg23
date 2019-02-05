@@ -52,6 +52,8 @@ include 'util/filtro.php';
 		$sql .= " AND S.id = ".$_GET['setor'];
 	}
 
+	$sql .= "ORDER BY A.nome;";
+
 	$result = $conn->query($sql);
 
 	if(!$result){
