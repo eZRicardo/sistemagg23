@@ -28,20 +28,52 @@
 
 		getId();
 
-		$sql = "SELECT A.id, A.nome as nome, E.nome as engenharia, E.id as idEngenharia, S.id as idSetor FROM associado A 
+		$sql = "SELECT A.nome as nome, S.id as setor, E.id as engenharia, DA.data_nascimento as dataNascimento, DA.endereco, DA.bairro, DA.cidade, DA.uf, DA.cep, DA.telefone, DA.celular, DA.email, DA.id_curso as curso, DA.periodo, DA.turno, DA.rg, DA.cpf  FROM associado A 
 		INNER JOIN engenharia E ON A.id_engenharia = E.id
-		INNER JOIN setor S ON A.id_setor = S.id WHERE A.id = $idAssociado ";
+		INNER JOIN setor S ON A.id_setor = S.id
+		INNER JOIN dados_associado DA on A.id = DA.id_associado
+		WHERE A.id = $idAssociado ";
 		$result = $conn->query($sql);
 
 		$row = $result->fetch_assoc();
 
 		global $nome;
+		global $setor;
 		global $engenharia;
+		global $dataNascimento;
+		global $endereco;
+		global $bairro;
+		global $cidade;
+		global $uf;
+		global $cep;
+		global $telefone;
+		global $celular;
+		global $email;
+		global $curso;
+		global $periodo;
+		global $turno;
+		global $rg;
+		global $cpf;
 		global $setor;
 
 		$nome = $row['nome'];
-		$engenharia = $row['idEngenharia'];
-		$setor = $row['idSetor'];
+		$setor = $row['setor'];
+		$engenharia = $row['engenharia'];
+		$dataNascimento = $row['dataNascimento'];
+		$endereco = $row['endereco'];
+		$bairro = $row['bairro'];
+		$cidade = $row['cidade'];
+		$uf = $row['uf'];
+		$cep = $row['cep'];
+		$telefone = $row['telefone'];
+		$celular = $row['celular'];
+		$email = $row['email'];
+		$curso = $row['curso'];
+		$periodo = $row['periodo'];
+		$turno = $row['turno'];
+		$rg = $row['rg'];
+		$cpf = $row['cpf'];
+		$setor = $row['setor'];
 	}
 
 	$nome = "";
@@ -73,43 +105,22 @@
 	    <label>Nome Completo:</label>
 	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nome" value="<?php echo $nome; ?>" required>
 	    <label>Data de Nascimento:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="date" name="dataNascimento" id="dataNascimento">
+	    <input class="form-control" <?php echo $disabled; ?> type="date" name="dataNascimento" id="dataNascimento" value="<?php echo $dataNascimento; ?>">
 	    <label>Endereço:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" name="endereco" id="endereco">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="endereco" id="endereco" value="<?php echo $endereco ?>">
 	    <label>Bairro:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" name="bairro" id="bairro">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="bairro" id="bairro" value="<?php echo $bairro; ?>">
 	    <label>Cidade:</label>
-	    <input class="form-control" <?php echo $disabled; ?> type="text" name="cidade" id="cidade">
+	    <input class="form-control" <?php echo $disabled; ?> type="text" name="cidade" id="cidade" value="<?php echo $cidade; ?>">
 	    <label>UF:</label>
 	    <select class="form-control" <?php echo $disabled; ?> name="uf" id="uf">
 	    	<option value=""></option>
-	    	<option value="AC">AC</option>
-	    	<option value="AL">AL</option>
-	    	<option value="AP">AP</option>
-	    	<option value="AM">AM</option>
-	    	<option value="BA">BA</option>
-	    	<option value="CE">CE</option>
-	    	<option value="DF">DF</option>
-	    	<option value="ES">ES</option>
-	    	<option value="GO">GO</option>
-	    	<option value="MA">MA</option>
-	    	<option value="MT">MT</option>
-	    	<option value="MS">MS</option>
-	    	<option value="MG">MG</option>
-	    	<option value="PA">PA</option>
-	    	<option value="PB">PB</option>
-	    	<option value="PR">PR</option>
-	    	<option value="PE">PE</option>
-	    	<option value="PI">PI</option>
-	    	<option value="RJ">RJ</option>
-	    	<option value="RN">RN</option>
-	    	<option value="RS">RS</option>
-	    	<option value="RO">RO</option>
-	    	<option value="RR">RR</option>
-	    	<option value="SC">SC</option>
-	    	<option value="SP">SP</option>
-	    	<option value="SE">SE</option>
-	    	<option value="TO">TO</option>
+	    	<?php
+	    	$arrayUf = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+	    	foreach ($arrayUf as $key => $uf) {
+	    		echo "<option value='$uf'>$uf</option>";
+	    	}
+	    	?>
 	    </select>
 	    <label>CEP:</label>
 		  <input class="form-control" <?php echo $disabled; ?> pattern="[0-9]{8}$" type="text" name="cep" id="cep">
@@ -160,7 +171,7 @@
 	    </select>
 	  </div>
 	  <input type="hidden" name="modo" value="<?php echo $_GET['modo']; ?>">
-	  <input type="hidden" name="id" id="idAssociado" value="<?php echo $idAssociado; ?>">
+	  <input type="hidden" name="idAssociado" id="idAssociado" value="<?php echo $idAssociado; ?>">
 	  <?php if(!$disabled){ ?>
 	  <input type="submit" class="btn btn-warning">
 	  <label id="labelResponse"></label>

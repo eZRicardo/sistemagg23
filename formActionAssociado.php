@@ -47,14 +47,15 @@
 								, '$uf', '$cep', '$telefone', '$celular', '$email', '$periodo', '$turno', '$rg', '$cpf')";
 			$result = $conn->multi_query($sql);
 			if($result){
+				$_SESSION['formassociado'] = "";
 				header('Location: formassociado.php?response=Cadastro realizado com sucesso');
 			} else {
 				echo $conn->error;
 				die($sql);
 			}
 	} else {
-		if(isset($_GET['idAssociado'])){
-			$idAssociado = $_GET['idAssociado'];
+		if(isset($campos['idAssociado'])){
+			$idAssociado = $campos['idAssociado'];
 		} else {
 			die("ERRO: Não foi passado nenhum id como parametro");
 		}
@@ -68,16 +69,35 @@
 				die("Erro ao remover do banco de dados");
 			}
 		} else if($modo=="edit"){
-			if(isset($_GET['nome'])){
-				$nome = $_GET['nome'];
-				$setor = $_GET['setor'];
-				$engenharia = $_GET['engenharia'];
+			if(isset($campos['nome'])){
+				$nome = $campos['nome'];
+				$setor = $campos['setor'];
+				$engenharia = $campos['curso'];
+				$dataNascimento = $campos['dataNascimento'];
+				$endereco = $campos['endereco'];
+				$bairro = $campos['bairro'];
+				$cidade = $campos['cidade'];
+				$uf = $campos['uf'];
+				$cep = $campos['cep'];
+				$telefone = $campos['telefone'];
+				$celular = $campos['celular'];
+				$email = $campos['email'];
+				$curso = $campos['curso'];
+				$periodo = $campos['periodo'];
+				$turno = $campos['turno'];
+				$rg = $campos['rg'];
+				$cpf = $campos['cpf'];
+				$setor = $campos['setor'];
 			} else {
 				die("ERRO: Não foi passado nome como parametro para o cadastro");
 			}
-			$sql = "UPDATE associado SET nome = '$nome', id_setor = $setor, id_engenharia = $engenharia WHERE id = $idAssociado";
-			$result = $conn->query($sql);
+			$sql = "UPDATE associado SET nome = '$nome', id_setor = $setor, id_engenharia = $engenharia WHERE id = $idAssociado;";
+			$sql .= "UPDATE dados_associado SET data_nascimento = '$dataNascimento', endereco = '$endereco', bairro = '$bairro', cidade = '$cidade', uf = '$uf', cep = '$cep', telefone = '$telefone', celular = '$celular', email = '$email', id_curso = '$curso', periodo = '$periodo', turno = '$turno', rg = '$rg', cpf = '$cpf' WHERE id_associado = $idAssociado";
+			die($sql);
+			$result = $conn->multi_query($sql);
 			if($result){
+				$_SESSION['formassociado'] = "";
+				header('Location: formassociado.php?response=Alterado com sucesso');
 			} else {
 				die("Erro ao alterar no banco de dados");
 			}
