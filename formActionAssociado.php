@@ -33,14 +33,14 @@
 
 	foreach ($tabela['nome'] as $key => $value) {
 		if($value && $campos['nome'] == $value){
-			$msgerro['nome'] = "Nome já está cadastrado";
+			$msgerro['nome'] = "(Nome já está cadastrado!)";
 			$invalido = true;
 		}
 	}
 
 	foreach ($tabela['cpf'] as $key => $value) {
 		if($value && $campos['cpf'] == $value){
-			$msgerro['cpf'] = "Cpf já cadastrado";
+			$msgerro['cpf'] = "(Cpf já cadastrado!)";
 			$invalido = true;
 		}
 	}

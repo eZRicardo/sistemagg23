@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+	// error_reporting(0);
+
 	session_start();
 	if(!isset($_SESSION['id'])){
 		header("Location: logout.php");
@@ -99,6 +102,27 @@
 		$idAssociado = "";
 	}
 
+	if($_SESSION['formassociado']){
+		//recarrega os campos
+		$nome = $_SESSION['formassociado']['nome'];
+		$setor = $_SESSION['formassociado']['setor'];
+		$engenharia = $_SESSION['formassociado']['engenharia'];
+		$dataNascimento = $_SESSION['formassociado']['dataNascimento'];
+		$endereco = $_SESSION['formassociado']['endereco'];
+		$bairro = $_SESSION['formassociado']['bairro'];
+		$cidade = $_SESSION['formassociado']['cidade'];
+		$uf = $_SESSION['formassociado']['uf'];
+		$cep = $_SESSION['formassociado']['cep'];
+		$telefone = $_SESSION['formassociado']['telefone'];
+		$celular = $_SESSION['formassociado']['celular'];
+		$email = $_SESSION['formassociado']['email'];
+		$curso = $_SESSION['formassociado']['curso'];
+		$periodo = $_SESSION['formassociado']['periodo'];
+		$turno = $_SESSION['formassociado']['turno'];
+		$rg = $_SESSION['formassociado']['rg'];
+		$cpf = $_SESSION['formassociado']['cpf'];
+		$setor = $_SESSION['formassociado']['setor'];
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -116,7 +140,7 @@
 	  <div class="form-group">
 	  	<font color="green" id="labelResponse"><?php echo $response; ?></font>
 	  	<br>
-	    <label>Nome Completo:</label><font color="red"> (<?php echo $_SESSION['formassociado']['msgerro']['nome']; ?>)</font>
+	    <label>Nome Completo:</label><font color="red"> <?php echo $_SESSION['formassociado']['msgerro']['nome']; ?></font>
 	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nome" value="<?php echo $nome; ?>" required>
 	    <label>Data de Nascimento:</label>
 	    <input class="form-control" <?php echo $disabled; ?> type="date" name="dataNascimento" id="dataNascimento" value="<?php echo $dataNascimento; ?>">
@@ -170,7 +194,7 @@
 	    <input class="form-control" <?php echo $disabled; ?> type="text" name="turno" id="turno" value="<?php echo $turno; ?>">
 	    <label>RG:</label>
 	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{7}$" name="rg" id="rg" value="<?php echo $rg; ?>">
-	    <label>CPF: </label><font color="red"> (<?php echo $_SESSION['formassociado']['msgerro']['cpf']; ?>)</font>
+	    <label>CPF: </label><font color="red"> <?php echo $_SESSION['formassociado']['msgerro']['cpf']; ?></font>
 	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{11}$" name="cpf" id="cpf" value="<?php echo $cpf; ?>">
 	    <label>Setor:</label>
 	    <select class="form-control" name="setor" id="setor" <?php echo $disabled; ?> required>
