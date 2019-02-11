@@ -2,22 +2,59 @@
 	session_start();
 	include 'connection.php';
 
-	if(isset($_GET['modo'])){
-		$modo = $_GET['modo'];
-	} else {
-		header("Location:engenharia.php");
-	}
-
 	$campos = $_SESSION['formassociado'] = $_GET;
 
+	if(isset($campos['modo'])){
+		$modo = $campos['modo'];
+	} else {
+		header("Location:associado.php");
+	}
+
+	$idAssociado = $campos['idAssociado'];
+
+	// Validar se nome e cpf são únicos
 	$sql = "SELECT nome, cpf FROM associado A
 					INNER JOIN dados_associado DA ON A.id = DA.id_associado ";
+				if($idAssociado){
+					$sql .= "WHERE A.id <> ".$idAssociado;
+				}
 	$result = $conn->query($sql);
 	if($result){
-		$tabela = $result->fetch_array();
+		while($row = $result->fetch_assoc()){
+			$tabela['nome'][] = $row['nome'];
+			$tabela['cpf'][] = $row['cpf'];
+		}
 	} else {
 		die("Erro na query: ".$sql);
 	}
+
+	$msgerro = [];
+	$invalido = false;
+
+	foreach ($tabela['nome'] as $key => $value) {
+		if($value && $campos['nome'] == $value){
+			$msgerro['nome'] = "Nome já está cadastrado";
+			$invalido = true;
+		}
+	}
+
+	foreach ($tabela['cpf'] as $key => $value) {
+		if($value && $campos['cpf'] == $value){
+			$msgerro['cpf'] = "Cpf já cadastrado";
+			$invalido = true;
+		}
+	}
+
+	if($invalido){
+		$_SESSION['formassociado']['msgerro'] = $msgerro;
+		$urlvoltar = "modo=".$modo;
+		if($modo != "cadastrar"){
+			$urlvoltar .= "&idAssociado=$idAssociado";
+		}
+		header('Location: formassociado.php?'.$urlvoltar);
+		die;
+	}
+	//Fim da Validação
 
 	if($modo=="cadastrar"){
 			$nome = $campos['nome'];
@@ -48,7 +85,7 @@
 			$result = $conn->multi_query($sql);
 			if($result){
 				$_SESSION['formassociado'] = "";
-				header('Location: formassociado.php?response=Cadastro realizado com sucesso');
+				header("Location: formassociado.php?modo=cadastrar&response=Cadastro realizado com sucesso");
 			} else {
 				echo $conn->error;
 				die($sql);
@@ -66,6 +103,7 @@
 			if($result){
 				header("Location: associado.php");
 			} else {
+				echo $sql;
 				die("Erro ao remover do banco de dados");
 			}
 		} else if($modo=="edit"){
@@ -97,7 +135,7 @@
 			$result = $conn->multi_query($sql);
 			if($result){
 				$_SESSION['formassociado'] = "";
-				header('Location: formassociado.php?response=Alterado com sucesso');
+				header("Location: formassociado.php?idAssociado=$idAssociado&modo=edit&response=Alterado com sucesso");
 			} else {
 				die("Erro ao alterar no banco de dados");
 			}

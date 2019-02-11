@@ -9,7 +9,13 @@
 	if(isset($_GET['modo'])){
 		$modo = $_GET['modo'];
 	} else {
+		die("get modo");
 		header("Location: associado.php");
+	}
+
+	$response = "";
+	if(isset($_GET['response'])){
+		$response = $_GET['response'];
 	}
 
 	function getId(){
@@ -17,6 +23,7 @@
 		if(isset($_GET['idAssociado'])){
 			$idAssociado = $_GET['idAssociado'];
 		} else {
+			die("get id");
 			header("Location: associado.php");
 		}
 	}
@@ -33,9 +40,13 @@
 		INNER JOIN setor S ON A.id_setor = S.id
 		INNER JOIN dados_associado DA on A.id = DA.id_associado
 		WHERE A.id = $idAssociado ";
-		$result = $conn->query($sql);
 
-		$row = $result->fetch_assoc();
+		$result = $conn->query($sql);
+		if($result){
+			$row = $result->fetch_assoc();
+		} else {
+			die("ERRO na query : $sql ");
+		}
 
 		global $nome;
 		global $setor;
@@ -87,6 +98,7 @@
 	} else {
 		$idAssociado = "";
 	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -102,7 +114,9 @@
 	<?php include 'navbar.html'; ?>
 	<form action="formActionAssociado.php" method="get" id="formularioAssociado">
 	  <div class="form-group">
-	    <label>Nome Completo:</label>
+	  	<font color="green" id="labelResponse"><?php echo $response; ?></font>
+	  	<br>
+	    <label>Nome Completo:</label><font color="red"> (<?php echo $_SESSION['formassociado']['msgerro']['nome']; ?>)</font>
 	    <input class="form-control" <?php echo $disabled; ?> name="nome" id="nome" value="<?php echo $nome; ?>" required>
 	    <label>Data de Nascimento:</label>
 	    <input class="form-control" <?php echo $disabled; ?> type="date" name="dataNascimento" id="dataNascimento" value="<?php echo $dataNascimento; ?>">
@@ -156,7 +170,7 @@
 	    <input class="form-control" <?php echo $disabled; ?> type="text" name="turno" id="turno" value="<?php echo $turno; ?>">
 	    <label>RG:</label>
 	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{7}$" name="rg" id="rg" value="<?php echo $rg; ?>">
-	    <label>CPF:</label>
+	    <label>CPF: </label><font color="red"> (<?php echo $_SESSION['formassociado']['msgerro']['cpf']; ?>)</font>
 	    <input class="form-control" <?php echo $disabled; ?> type="text" maxlength="15" pattern="[0-9]{11}$" name="cpf" id="cpf" value="<?php echo $cpf; ?>">
 	    <label>Setor:</label>
 	    <select class="form-control" name="setor" id="setor" <?php echo $disabled; ?> required>
@@ -178,7 +192,6 @@
 	  <input type="hidden" name="idAssociado" id="idAssociado" value="<?php echo $idAssociado; ?>">
 	  <?php if(!$disabled){ ?>
 	  <input type="submit" class="btn btn-warning">
-	  <label id="labelResponse"></label>
 	  <?php } ?>
 	</form>
 </body>
