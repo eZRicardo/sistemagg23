@@ -3,6 +3,7 @@
 	if(!isset($_SESSION['id'])){
 		header("Location: logout.php");
 	}
+
 ?>
 <!DOCTYPE html>
 <html>

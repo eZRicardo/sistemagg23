@@ -13,8 +13,8 @@ session_start();
 	<meta charset="utf-8">
 	<title>Faltas</title>
 	<script src="js/jquery-3.3.1.js"></script>
-	<script src="js/motivofalta.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/motivofalta.css">
+	<script src="js/falta.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/falta.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
@@ -27,7 +27,7 @@ session_start();
 	</tr>
 	</table>
 	<br>
-	<h2>Motivos Falta</h2>
+	<h2>Faltas Registradas</h2>
 	<table id="tabelamotivofaltas" class="table table-striped">
 		<thead>
 			<th>Nome do associado</th>
@@ -35,7 +35,7 @@ session_start();
 			<th>Motivo da falta</th>
 		</thead>
 			<?php 
-			$sql = "SELECT F.data as faltadata,MF.nome as motivonome, A.nome as associadonome FROM falta F 
+			$sql = "SELECT F.id, F.data as faltadata,MF.nome as motivofalta, A.nome as associadonome FROM falta F 
 			INNER JOIN associado A ON F.id_associado = A.id
 			INNER JOIN motivofalta MF ON F.id_motivofalta = MF.id ";
 			$result = $conn->query($sql);

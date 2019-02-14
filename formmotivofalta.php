@@ -1,5 +1,5 @@
 <?php
-    
+    error_reporting(0);
 	session_start();
 	if(!isset($_SESSION['id'])){
 		header("Location: logout.php");
@@ -15,7 +15,7 @@
         $disabled = "disabled";
     }
 
-    $sql = "SELECT nome, id_tipofalta as tipofalta FROM motivofalta WHERE id = $id ";
+    $sql = "SELECT nome, id_tipofalta as tipofalta FROM motivofalta WHERE id = '$id' ";
     $result = $conn->query($sql);
 
     if($result){
@@ -38,18 +38,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="js/jquery-3.3.1.js"></script>
-	<script src="js/formengenharia.js"></script>
+	<script src="js/motivofalta.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/formengenharia.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
 <?php include 'navbar.html'; ?>
 <form method="GET" action="formActionmotivofalta.php">
+<font color = "green"><?php echo $_GET['response']; ?></font>
+
+<br>
             Motivo da falta:
                 <p>
                     <input type="text" name="nome" <?php echo $disabled; ?> 
                      value="<?php echo $nome; ?>">
                 </p>
+                <font color = "red"><?php echo $_GET['errorresponse']; ?></font>
+                <font color = "red"><?php echo $_GET['errorresponse2']; ?></font>
+                <br>
             Bandeira:
             <p>
             <select name = "tipofalta" <?php echo $disabled; ?>>
@@ -74,10 +80,19 @@
             }
             ?>
             </select>
+            <font color = "red"><?php echo $_GET['errorresponse1']; ?></font>
+            <font color = "red"><?php echo $_GET['errorresponse2']; ?></font>
                         </p>
-                            <?php if(!$disabled) { 
+                        <input type="hidden" name="modo" value="<?php echo $modo;?>">
 
-                                echo "<input class='btn btn-warning' type='submit' name='cadastro' value='Cadastrar'>";
+                        <input type="hidden" name="id" value="<?php echo $id;?>">
+                        
+                        <input type="button" class="btn btn-warning" onclick="voltar()" value="Voltar">
+                        &nbsp;
+                         <?php if(!$disabled) { 
+
+                                echo "<input class='btn btn-warning' type='submit' name='cadastro'>";
+                                
 
                             } ?>
                     </form>

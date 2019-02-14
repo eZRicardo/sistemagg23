@@ -37,7 +37,8 @@
 		</thead>
 		<?php 
 			$sql = "SELECT MF.id, MF.nome as motivonome, TF.nome as tiponome FROM motivofalta MF 
-			INNER JOIN tipofalta TF ON MF.id_tipofalta = TF.id ";
+			INNER JOIN tipofalta TF ON MF.id_tipofalta = TF.id 
+			ORDER BY MF.nome ";
 			$result = $conn->query($sql);
 			while($row = $result->fetch_assoc()){
 				echo "<tr>";

@@ -7,6 +7,7 @@ if(!isset($_SESSION['id'])){
 
 include 'connection.php';
 include 'util/filtro.php';
+error_reporting(0);
 
 ?>
 
