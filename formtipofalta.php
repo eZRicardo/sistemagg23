@@ -15,17 +15,17 @@
         $disabled = "disabled";
     }
 
-    $sql = "SELECT nome, id_tipofalta as tipofalta FROM motivofalta WHERE id = '$id' ";
+    $sql = "SELECT nome, peso FROM tipofalta WHERE id = '$id' ";
     $result = $conn->query($sql);
 
     if($result){
         $row = $result->fetch_assoc();
 
         global $nome;
-        global $tipofalta;
+        global $peso;
 
         $nome = $row['nome'];
-        $tipofalta = $row['tipofalta'];
+        $peso = $row['peso'];
     } else {
         die("Erro na query: $sql");
     }
@@ -34,7 +34,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Cadastro motivo falta</title>
+    <title>Cadastro tipo falta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="js/jquery-3.3.1.js"></script>
@@ -44,11 +44,11 @@
 </head>
 <body>
 <?php include 'navbar.html'; ?>
-<form method="GET" action="formActionmotivofalta.php">
+<form method="GET" action="formActiontipofalta.php">
 <font color = "green"><?php echo $_GET['response']; ?></font>
 
 <br>
-            Motivo da falta:
+            Bandeira:
                 <p>
                     <input type="text" name="nome" <?php echo $disabled; ?> 
                      value="<?php echo $nome; ?>">
@@ -56,13 +56,15 @@
                 <font color = "red"><?php echo $_GET['errorresponse']; ?></font>
                 <font color = "red"><?php echo $_GET['errorresponse2']; ?></font>
                 <br>
-            Bandeira:
+            Peso:
             <p>
-            <select name = "tipofalta" <?php echo $disabled; ?>>
-            <option value="">Selecione um tipo</option>
+
+            <input type="number" name="peso" <?php echo $disabled; ?> 
+                     value="<?php echo $peso; ?>">
+
             </p>
             <?php 
-            $sql = "SELECT id, nome FROM tipofalta";
+            $sql = "SELECT nome, peso FROM tipofalta";
             $result = $conn->query($sql);
 
             if($result) {

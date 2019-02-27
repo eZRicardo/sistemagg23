@@ -23,6 +23,7 @@
 		<a class="btn btn-secondary" href="associado.php">Setor</a><br>
 		<a class="btn btn-secondary" href="faltas.php">Faltas</a><br>
 		<a class="btn btn-secondary" href="motivofalta.php">Motivo Falta</a><br>
+		<a class="btn btn-secondary" href="tipofalta.php">Tipo Falta</a><br>
 		<a class="btn btn-secondary" href="gerarTermoAdesao.php">Gerar Documento</a><br>
 	</center>
 </body>
