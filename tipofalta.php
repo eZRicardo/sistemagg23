@@ -25,7 +25,7 @@
 		<td><a href="formtipofalta.php?modo=cadastrar"><img src="assets/cadastrarbutton.png">Cadastrar</a></td>
     </tr>
     
-    <input type="button" class="btn btn-warning" onclick="voltar()" value="Voltar">
+    <input type="button" class="btn btn-warning" onclick="voltartipofalta()" value="Voltar">
     <br>
     <br>
     

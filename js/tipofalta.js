@@ -4,6 +4,9 @@ function deletebutton(id){
     }
 }
 
-function voltar() {
+function voltarform() {
     window.location = "tipofalta.php";
+  }
+  function voltartipofalta() {
+    window.location = "menugenteegestao.php";
   }

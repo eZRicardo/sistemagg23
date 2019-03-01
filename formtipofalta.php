@@ -89,7 +89,7 @@
 
                         <input type="hidden" name="id" value="<?php echo $id;?>">
                         
-                        <input type="button" class="btn btn-warning" onclick="voltar()" value="Voltar">
+                        <input type="button" class="btn btn-warning" onclick="voltarform()" value="Voltar">
                         &nbsp;
                          <?php if(!$disabled) { 
 
