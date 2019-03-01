@@ -14,50 +14,60 @@ $id = $_GET['id'];
 
 if($modo == "cadastrar"){
 
-    $nome = $_GET['nome'];
-    $tipofalta= $_GET['tipofalta'];
+    // str_replace evitar sql injection
+    
+    $nome = str_replace("\'","",$_GET['nome']);
+    $peso = str_replace("\'","",$_GET['peso']);
+    if($nome==""){
+        header("Location: formtipofalta.php?id=$id&modo=cadastrar&errorresponse=Campo em Branco, favor preencher");
+    }
+    else if($peso==""){
+        header("Location: formtipofalta.php?id=$id&modo=cadastrar&errorresponse1=Campo em Branco, favor preencher");
+    }
+    else if($nome=="" && $peso==""){
 
-    if($tipofalta==""){
+        header("Location: formtipofalta.php?id=$id&modo=cadastrar&errorresponse2=Campo em Branco, favor preencher");
 
-    header("Location: formmotivofalta.php?modo=cadastrar&errorresponse=Tipo Selecionado não é válido");
+    }
+    
+    else{
 
-    }else{
-
-    $inserirdados = "INSERT INTO motivofalta(nome, id_tipofalta) VALUES ('$nome','$tipofalta') ";
+    $inserirdados = "INSERT INTO tipofalta(nome,peso) VALUES ('$nome','$peso') ";
 
     $result = $conn->query($inserirdados);
     
     if($result){
-        header("Location: formmotivofalta.php?modo=cadastrar&response=Cadastrado com sucesso!");
+        header("Location: formtipofalta.php?modo=cadastrar&response=Cadastrado com sucesso!");
     } else {
         echo ($inserirdados);
-        die("Infelizmente não foi possível cadastrar a falta");
+        die("Infelizmente não foi possível cadastrar a bandeira");
     }
 }
 } else if($modo == "edit"){
     $id = $_GET['id'];
-    $nome = $_GET['nome'];
-    $tipofalta= $_GET['tipofalta'];
 
-    if($nome=="" AND $tipofalta==""){
+    //str_replace evitar sql injection
 
-        header("Location: formmotivofalta.php?id=$id&modo=edit&errorresponse2=Tipo Selecionado não é válido");
-    
-        } else if ($tipofalta==""){
-            
-            header("Location: formmotivofalta.php?id=$id&modo=edit&errorresponse1=Tipo Selecionado não é válido");
-            
-        }
-        else if($nome==""){
-    
-            header("Location: formmotivofalta.php?id=$id&modo=edit&errorresponse=Tipo Selecionado não é válido");
-        }
+    $nome = str_replace("\'","",$_GET['nome']);
+    $peso =  str_replace("\'","",$_GET['peso']);
+
+      if($nome==""){
+        header("Location: formtipofalta.php?id=$id&modo=cadastrar&errorresponse=Campo em Branco, favor preencher");
+    }
+    else if($peso==""){
+        header("Location: formtipofalta.php?id=$id&modo=cadastrar&errorresponse1=Campo em Branco, favor preencher");
+    }
+    else if($nome=="" && $peso==""){
+
+        header("Location: formtipofalta.php?id=$id&modo=cadastrar&errorresponse2=Campo em Branco, favor preencher");
+
+    }
     else{
-    $alterardados = "UPDATE motivofalta SET nome = '$nome', id_tipofalta = '$tipofalta' WHERE id = '$id' ";
+    $alterardados = "UPDATE tipofalta SET nome = '$nome', peso = '$peso' WHERE id = '$id' ";
     $result = $conn->query($alterardados);
 
     if($result){
-        header("Location: formmotivofalta.php?id=$id&modo=edit&response=Alterado com sucesso!");
+        header("Location: formtipofalta.php?id=$id&modo=edit&response=Alterado com sucesso!");
     } else {
         echo ($alterardados);
         die("Infelizmente não foi possível alterar a falta");
@@ -65,12 +75,12 @@ if($modo == "cadastrar"){
 }
 } else if ($modo == "delete"){
     $id = $_GET['id'];
-    $deletardados = "DELETE FROM motivofalta WHERE id = '$id' ";
+    $deletardados = "DELETE FROM tipofalta WHERE id = '$id' ";
 
     $result = $conn->query($deletardados);
 
     if($result){
-        header("location: motivofalta.php");
+        header("location: tipofalta.php");
     } else {
         echo ($deletardados);
         die;

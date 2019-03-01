@@ -38,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="js/jquery-3.3.1.js"></script>
-	<script src="js/motivofalta.js"></script>
+	<script src="js/tipofalta.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/formengenharia.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
@@ -75,14 +75,13 @@
                     if($row['id'] == $tipofalta){
                         $selected = "selected";
                     }
-
-                    echo "<option value='".$row['id']."' $selected>".$row['nome']."</option>";
                 }
             } else {
                 die("erro na query $sql");
             }
             ?>
             </select>
+            <!-- procurar como dar response em placeholder -->
             <font color = "red"><?php echo $_GET['errorresponse1']; ?></font>
             <font color = "red"><?php echo $_GET['errorresponse2']; ?></font>
                         </p>

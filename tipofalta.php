@@ -13,7 +13,7 @@
 	<meta charset="utf-8">
 	<title>Tipo Falta</title>
 	<script src="js/jquery-3.3.1.js"></script>
-	<script src="js/tipofaltatable.js"></script>
+	<script src="js/tipofalta.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
